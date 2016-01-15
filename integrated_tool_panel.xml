@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<toolbox>
+    <section id="textutil" name="Text Manipulation" version="">
+        <tool id="addValue" />
+        <tool id="cat1" />
+        <tool id="Cut1" />
+        <tool id="mergeCols1" />
+        <tool id="Convert characters1" />
+        <tool id="createInterval" />
+        <tool id="ChangeCase" />
+        <tool id="Paste1" />
+        <tool id="Remove beginning1" />
+        <tool id="random_lines1" />
+        <tool id="Show beginning1" />
+        <tool id="Show tail1" />
+        <tool id="trimmer" />
+        <tool id="wc_gnu" />
+        <tool id="secure_hash_message_digest" />
+    </section>
+    <section id="lefse" name="LEfSe" version="">
+        <tool id="toolshed.g2.bx.psu.edu/repos/george-weingart/lefse/LEfSe_for/1.0" />
+        <tool id="toolshed.g2.bx.psu.edu/repos/george-weingart/lefse/LEfSe_run/1.0" />
+        <tool id="toolshed.g2.bx.psu.edu/repos/george-weingart/lefse/LEfSe_res/1.0" />
+        <tool id="toolshed.g2.bx.psu.edu/repos/george-weingart/lefse/LEfSe_cla/1.0" />
+        <tool id="toolshed.g2.bx.psu.edu/repos/george-weingart/lefse/LEfSe_sfe/1.0" />
+        <tool id="toolshed.g2.bx.psu.edu/repos/george-weingart/lefse/LEfSe_fea/1.0" />
+    </section>
+    <section id="metaphlan" name="MetaPhlAn" version="">
+        <tool id="testtoolshed.g2.bx.psu.edu/repos/george-weingart/metaphlan/metaphlan/1.7.0" />
+    </section>
+    <section id="MetaPhlAn2" name="MetaPhlAn2" version="">
+        <tool id="metaphlan2" />
+    </section>
+    <section id="graphlan" name="GraPhlAn" version="">
+        <tool id="graphlan_annotate" />
+        <tool id="graphlan_ring_annotate" />
+        <tool id="graphlan" />
+    </section>
+    <section id="micropita" name="microPITA" version="">
+        <tool id="testtoolshed.g2.bx.psu.edu/repos/george-weingart/micropita/micropita/1.0.1" />
+    </section>
+    <section id="maaslin" name="MaAsLin" version="">
+        <tool id="testtoolshed.g2.bx.psu.edu/repos/george-weingart/maaslin/maaslin_run/1.0.1" />
+    </section>
+    <section id="PICRUSt" name="PICRUSt" version="">
+        <tool id="PICRUSt_normalize" />
+        <tool id="PICRUSt_predict" />
+        <tool id="PICRUSt_categorize" />
+    </section>
+    <section id="getext" name="Get Data" version="">
+        <tool id="upload1" />
+        <tool id="ucsc_table_direct1" />
+        <tool id="ucsc_table_direct_test1" />
+        <tool id="ucsc_table_direct_archaea1" />
+        <tool id="ebi_sra_main" />
+        <tool id="microbial_import1" />
+        <tool id="biomart" />
+        <tool id="biomart_test" />
+        <tool id="cbi_rice_mart" />
+        <tool id="gramenemart" />
+        <tool id="modENCODEfly" />
+        <tool id="flymine" />
+        <tool id="flymine_test" />
+        <tool id="modmine" />
+        <tool id="mousemine" />
+        <tool id="ratmine" />
+        <tool id="yeastmine" />
+        <tool id="metabolicmine" />
+        <tool id="modENCODEworm" />
+        <tool id="wormbase" />
+        <tool id="wormbase_test" />
+        <tool id="eupathdb" />
+        <tool id="hbvar" />
+        <tool id="genomespace_file_browser_prod" />
+        <tool id="genomespace_importer" />
+        <tool id="fix_errors" />
+    </section>
+    <section id="convert" name="Convert Formats" version="">
+        <tool id="axt_to_concat_fasta" />
+        <tool id="axt_to_fasta" />
+        <tool id="axt_to_lav_1" />
+        <tool id="bed2gff1" />
+        <tool id="gff2bed1" />
+        <tool id="lav_to_bed1" />
+        <tool id="MAF_To_BED1" />
+        <tool id="MAF_To_Interval1" />
+        <tool id="MAF_To_Fasta1" />
+        <tool id="wiggle2simple1" />
+        <tool id="Sff_extractor" />
+        <tool id="gtf2bedgraph" />
+        <tool id="wig_to_bigWig" />
+        <tool id="bed_to_bigBed" />
+    </section>
+</toolbox>

@@ -1,0 +1,36 @@
+---
+api_key: f1787fa9117ede5c21208d55d6f0cc5c
+galaxy_instance: 192.168.99.100
+tools:
+- name: lefse
+  owner: george-weingart
+  tool_panel_section_id: LEfSe
+  tool_shed_url: https://testtoolshed.g2.bx.psu.edu
+- name: metaphlan
+  owner: george-weingart
+  tool_panel_section_id: MetaPhlAn
+  tool_shed_url: https://testtoolshed.g2.bx.psu.edu
+- name: graphlan
+  owner: george-weingart
+  tool_panel_section_id: GraPhlAn
+  tool_shed_url: https://testtoolshed.g2.bx.psu.edu
+- name: micropita
+  owner: george-weingart
+  tool_panel_section_id: microPITA
+  tool_shed_url: https://testtoolshed.g2.bx.psu.edu
+- name: maaslin
+  owner: george-weingart
+  tool_panel_section_id: MaAsLin
+  tool_shed_url: https://testtoolshed.g2.bx.psu.edu
+#- name: fastqc
+#  owner: devteam
+#  tool_panel_section_id: cshl_library_information
+#  tool_shed_url: https://toolshed.g2.bx.psu.edu
+#  revisions:
+#  - '8c650f7f76e9'  # v0.62
+#  - 'd2cf2c0c8a11'  # v0.63
+#- name: bedtools
+#  owner: iuc
+#  tool_panel_section_label: 'BED tools'
+#  revisions:
+#  - 2cd7e321d259
