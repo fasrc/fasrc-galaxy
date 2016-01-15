@@ -1,6 +1,6 @@
 ---
 api_key: f1787fa9117ede5c21208d55d6f0cc5c
-galaxy_instance: 192.168.99.100
+galaxy_instance: localhost
 tools:
 - name: lefse
   owner: george-weingart
