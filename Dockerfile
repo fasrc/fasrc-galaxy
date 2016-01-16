@@ -23,9 +23,15 @@ RUN install-tools /tmp/tools.yaml
 
 RUN chmod g-w /var/log
 
-ADD ./integrated_tool_panel.xml /galaxy-central/integrated_tool_panel.xml
+#ADD ./integrated_tool_panel.xml /galaxy-central/integrated_tool_panel.xml
 
 RUN add-tool-shed --url 'http://testtoolshed.g2.bx.psu.edu/' --name 'Test Tool Shed'
+RUN install-repository \
+    "--url https://testtoolshed.g2.bx.psu.edu/ -o george-weingart --name lefse" \
+    "--url https://testtoolshed.g2.bx.psu.edu/ -o george-weingart --name metaphlan" \
+    "--url https://testtoolshed.g2.bx.psu.edu/ -o george-weingart --name graphlan" \
+    "--url https://testtoolshed.g2.bx.psu.edu/ -o george-weingart --name micropita" \
+    "--url https://testtoolshed.g2.bx.psu.edu/ -o george-weingart --name maaslin" \
 
 # Mark folders as imported from the host.
 VOLUME ["/export/", "/data/", "/var/lib/docker"]
