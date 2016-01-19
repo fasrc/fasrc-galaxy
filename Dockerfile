@@ -10,12 +10,16 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 && \
     sh -c "echo deb http://archive.linux.duke.edu/cran/bin/linux/ubuntu trusty/ > /etc/apt/sources.list.d/r_cran.list"
 
 RUN apt-get update -qq && apt-get upgrade -y && \
-    apt-get install --no-install-recommends -y texlive-binaries libfreetype6-dev \
+    apt-get install --no-install-recommends -y texlive-binaries libfreetype6-dev bowtie bowtie2 \
     r-base-core r-base-dev r-cran-mvtnorm r-cran-multcomp r-cran-sandwich r-cran-th.data r-cran-zoo
 
 RUN . $GALAXY_ROOT/.venv/bin/activate && \
     pip install setuptools --upgrade && \
     pip install psutil numpy rpy2 matplotlib
+
+ADD ./install.R /galaxy-central/install.R
+
+RUN R CMD BATCH /galaxy-central/install.R
 
 ADD ./tools.yaml /tmp/tools.yaml
 
