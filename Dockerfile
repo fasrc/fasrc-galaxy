@@ -23,6 +23,7 @@ RUN R CMD BATCH /galaxy-central/install.R
 
 ADD ./tools.yaml /tmp/tools.yaml
 
+ADD ./job_conf.xml /galaxy-central/config/job_conf.xml
 ADD ./dependency_resolvers_conf.xml /galaxy-central/config/dependency_resolvers_conf.xml
 
 RUN chown -v galaxy:galaxy /galaxy-central/config/dependency_resolvers_conf.xml
