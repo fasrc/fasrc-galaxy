@@ -30,6 +30,9 @@ RUN chown -v galaxy:galaxy /galaxy-central/config/dependency_resolvers_conf.xml
 
 RUN chmod g-w /var/log
 
+# do we need this? postgresql complained upon start.
+RUN chmod 700 /export/postgresql/9.3/main
+
 ADD ./integrated_tool_panel.xml /galaxy-central/integrated_tool_panel.xml
 
 RUN add-tool-shed --url 'http://testtoolshed.g2.bx.psu.edu/' --name 'Test Tool Shed'
