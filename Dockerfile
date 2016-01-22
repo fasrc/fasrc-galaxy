@@ -15,7 +15,7 @@ RUN apt-get update -qq && apt-get upgrade -y && \
 
 RUN . $GALAXY_ROOT/.venv/bin/activate && \
     pip install setuptools --upgrade && \
-    pip install psutil numpy rpy2 matplotlib blist && \
+    pip install psutil numpy rpy2 matplotlib blist biom-format h5py && \
     pip install --upgrade pip
 
 
