@@ -1,1 +1,1 @@
-install.packages(c("modeltools","", repos = "http://cran.case.edu")
+install.packages(c("modeltools","coin","agricolae"), repos = "http://cran.case.edu")
