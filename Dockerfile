@@ -20,12 +20,14 @@ RUN . $GALAXY_ROOT/.venv/bin/activate && \
 
 ADD ./startup.sh /usr/bin/startup
 
-RUN R CMD INSTALL --clean coin agricolae modeltools
-
 ADD ./tools.yaml /tmp/tools.yaml
+
 ADD ./Rprofile /galaxy-central/.Rprofile
 
+RUN R CMD INSTALL --clean coin agricolae modeltools
+
 ADD ./job_conf.xml /galaxy-central/config/job_conf.xml
+
 ADD ./dependency_resolvers_conf.xml /galaxy-central/config/dependency_resolvers_conf.xml
 
 RUN chown -v galaxy:galaxy /galaxy-central/config/dependency_resolvers_conf.xml
