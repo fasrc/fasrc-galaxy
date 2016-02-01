@@ -33,8 +33,8 @@ You'll see in the Dockerfile that some of these R packages are installed when bu
 
 When you add anything to the Dockerfile and want to enable these changes in production, we'll need to ensure the resulting container is pulled and running on hutlab15.
 
-Where are local data stored, like `/usr/local/galaxy-dist/database/files` on hutlab14?
------------------------------------------------------------------------------------------
+Where are local data stored, like `/usr/local/galaxy-dist/database/files` on the existing VM?
+---------------------------------------------------------------------------------------------
 
 Data are stored here inside the container: /export/galaxy-central/database/files
 
