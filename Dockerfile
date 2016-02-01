@@ -19,11 +19,10 @@ RUN . $GALAXY_ROOT/.venv/bin/activate && \
     pip install psutil numpy rpy2 matplotlib blist biom-format h5py cogent mlpy
 
 
-ADD ./install.R /galaxy-central/install.R
-
-RUN R CMD BATCH /galaxy-central/install.R
+RUN R CMD INSTALL --clean coin agricolae modeltools
 
 ADD ./tools.yaml /tmp/tools.yaml
+ADD ./Rprofile /galaxy-central/.Rprofile
 
 ADD ./job_conf.xml /galaxy-central/config/job_conf.xml
 ADD ./dependency_resolvers_conf.xml /galaxy-central/config/dependency_resolvers_conf.xml
