@@ -18,6 +18,7 @@ RUN . $GALAXY_ROOT/.venv/bin/activate && \
     pip install setuptools --upgrade && \
     pip install psutil numpy rpy2 matplotlib blist biom-format h5py cogent mlpy
 
+ADD ./startup.sh /usr/bin/startup
 
 RUN R CMD INSTALL --clean coin agricolae modeltools
 
