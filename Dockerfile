@@ -22,9 +22,10 @@ ADD ./startup.sh /usr/bin/startup
 
 ADD ./tools.yaml /tmp/tools.yaml
 
-ADD ./Rprofile /galaxy-central/.Rprofile
+#ADD ./Rprofile /galaxy-central/.Rprofile
 
 #RUN R CMD INSTALL --clean coin agricolae modeltools
+ADD ./install.R /galaxy-central/install.R
 RUN R CMD BATCH /galaxy-central/install.R
 
 ADD ./job_conf.xml /galaxy-central/config/job_conf.xml
