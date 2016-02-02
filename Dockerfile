@@ -49,11 +49,14 @@ RUN chmod g-w /var/log
 # do we need this? postgresql complained upon start.
 #RUN chmod 700 /export/postgresql/9.3/main
 
-ADD ./integrated_tool_panel.xml /galaxy-central/integrated_tool_panel.xml
 
 RUN add-tool-shed --url 'http://testtoolshed.g2.bx.psu.edu/' --name 'Test Tool Shed'
 
 RUN install-tools /tmp/tools.yaml
+
+ADD ./integrated_tool_panel.xml /export/galaxy-central/integrated_tool_panel.xml
+
+ENV GALAXY_CONFIG_INTEGRATED_TOOL_PANEL_CONFIG /export/galaxy-central/integrated_tool_panel.xml
 
 # Mark folders as imported from the host.
 VOLUME ["/export/", "/data/", "/var/lib/docker"]
