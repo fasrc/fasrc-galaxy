@@ -14,6 +14,13 @@ RUN apt-get update -qq && apt-get upgrade -y && \
     r-base-core r-base-dev r-cran-mvtnorm r-cran-multcomp r-cran-sandwich r-cran-th.data r-cran-zoo \
     ssh libopenmpi-dev openmpi-bin
 
+ENV GALAXY_DB_HOST=localhost \
+    GALAXY_DB_USER=galaxy \
+    GALAXY_DB_PASSWORD=galaxy \
+    GALAXY_DB_NAME=galaxy \
+    GALAXY_DB_PORT=5432 \
+    GALAXY_DATABASE_CONNECTION=postgresql://$GALAXY_DB_USER:"$GALAXY_DB_PASSWORD"@$GALAXY_DB_HOST:$GALAXY_DB_PORT/$GALAXY_DB_NAME
+
 RUN . $GALAXY_ROOT/.venv/bin/activate && \
     pip install setuptools --upgrade && \
     pip install psutil numpy rpy2 matplotlib blist biom-format h5py cogent mlpy
