@@ -57,3 +57,16 @@ The easiest way to restart one of the core galaxy services is to use the supervi
 
 Aside from that, you can stop/start/restart services via `supervisorctl` from within a shell session in the container.
 
+
+How does one upgrade the db schema after a galaxy upgrade?
+----------------------------------------------------------
+
+This should be relatively easy. You can do this from within a shell in the container or via `docker run`:
+
+  `root@ad4f7181b928:/galaxy-central# sh manage_db.sh -c /etc/galaxy/galaxy.ini upgrade`
+
+
+How does one point the container to an external db host?
+--------------------------------------------------------
+
+You can do this by setting the `GALAXY_CONFIG_DATABASE_CONNECTION` environment variable when running the container. This corresponds to the `database_connection` configuration line in the galaxy.ini file. By default, the container assumes it will use the local postgresql service inside the container.
