@@ -7,11 +7,11 @@ MAINTAINER FASRC, rchelp@rc.fas.harvard.edu
 WORKDIR /galaxy-central
 
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 && \
-    sh -c "echo deb http://archive.linux.duke.edu/cran/bin/linux/ubuntu trusty/ > /etc/apt/sources.list.d/r_cran.list"
-
-RUN apt-get update -qq && apt-get upgrade -y && \
+    sh -c "echo deb http://archive.linux.duke.edu/cran/bin/linux/ubuntu trusty/ > /etc/apt/sources.list.d/r_cran.list" && \
+    apt-get update -qq && apt-get upgrade -y && \
     apt-get install --no-install-recommends -y texlive-binaries libfreetype6-dev bowtie bowtie2 libhdf5-dev \
-    r-base-core r-base-dev r-cran-mvtnorm r-cran-multcomp r-cran-sandwich r-cran-th.data r-cran-zoo \
+    r-base-core r-base-dev r-cran-mvtnorm r-cran-multcomp r-cran-sandwich r-cran-th.data r-cran-zoo r-cran-testthat \
+    r-cran-vegan r-cran-gam r-cran-gbm r-cran-pscl r-cran-robustbase\
     ssh libopenmpi-dev openmpi-bin
 
 ENV GALAXY_DB_HOST=localhost \
@@ -25,38 +25,29 @@ RUN . $GALAXY_ROOT/.venv/bin/activate && \
     pip install setuptools --upgrade && \
     pip install psutil numpy rpy2 matplotlib blist biom-format h5py cogent mlpy
 
-ADD ./startup.sh /usr/bin/startup
-
-ADD ./tools.yaml /tmp/tools.yaml
-
-RUN chmod +x /usr/bin/startup
-
-#ADD ./Rprofile /galaxy-central/.Rprofile
-
-#RUN R CMD INSTALL --clean coin agricolae modeltools
-ADD ./install.R /galaxy-central/install.R
+COPY ./startup.sh /usr/bin/startup
+COPY ./tools.yaml /tmp/tools.yaml
+COPY ./install.R /galaxy-central/install.R
+COPY ./job_conf.xml /galaxy-central/config/job_conf.xml
+COPY ./dependency_resolvers_conf.xml /galaxy-central/config/dependency_resolvers_conf.xml
 
 RUN R CMD BATCH /galaxy-central/install.R
 
-ADD ./job_conf.xml /galaxy-central/config/job_conf.xml
-
-ADD ./dependency_resolvers_conf.xml /galaxy-central/config/dependency_resolvers_conf.xml
-
-RUN chown -v galaxy:galaxy /galaxy-central/config/dependency_resolvers_conf.xml
-
-RUN chmod g-w /var/log
-
-# do we need this? postgresql complained upon start.
-#RUN chmod 700 /export/postgresql/9.3/main
-
+RUN chown -v galaxy:galaxy /galaxy-central/config/dependency_resolvers_conf.xml && \
+    chmod +x /usr/bin/startup && \
+    chmod g-w /var/log
 
 RUN add-tool-shed --url 'http://testtoolshed.g2.bx.psu.edu/' --name 'Test Tool Shed'
 
 RUN install-tools /tmp/tools.yaml
 
-ADD ./integrated_tool_panel.xml /export/galaxy-central/integrated_tool_panel.xml
+RUN chown -R galaxy:galaxy /export/galaxy-central/ && \
+    apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV GALAXY_CONFIG_INTEGRATED_TOOL_PANEL_CONFIG /export/galaxy-central/integrated_tool_panel.xml
+
+COPY ./integrated_tool_panel.xml /export/galaxy-central/integrated_tool_panel.xml
+RUN chown galaxy:galaxy /export/galaxy-central/integrated_tool_panel.xml 
 
 # Mark folders as imported from the host.
 VOLUME ["/export/", "/data/", "/var/lib/docker"]
