@@ -2,10 +2,6 @@
 api_key: f1787fa9117ede5c21208d55d6f0cc5c
 galaxy_instance: localhost
 tools:
-- name: lefse
-  owner: george-weingart
-  tool_panel_section_id: LEfSe
-  tool_shed_url: https://testtoolshed.g2.bx.psu.edu
 - name: package_blast_plus_2_2_26
   owner: iuc
   tool_shed_url: https://toolshed.g2.bx.psu.edu
@@ -33,6 +29,10 @@ tools:
 - name: metaphlan
   owner: george-weingart
   tool_panel_section_id: MetaPhlAn
+  tool_shed_url: https://testtoolshed.g2.bx.psu.edu
+- name: lefse
+  owner: george-weingart
+  tool_panel_section_id: LEfSe
   tool_shed_url: https://testtoolshed.g2.bx.psu.edu
 #- name: fastqc
 #  owner: devteam
