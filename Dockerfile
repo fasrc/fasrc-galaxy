@@ -46,7 +46,7 @@ ENV GALAXY_CONFIG_INTEGRATED_TOOL_PANEL_CONFIG /export/galaxy-central/integrated
 
 COPY ./integrated_tool_panel.xml /export/galaxy-central/integrated_tool_panel.xml
 RUN mkdir -p /export/galaxy-central/database/files \
-    chown -R galaxy:galaxy /export/galaxy-central/
+    chown -r galaxy:galaxy /export/galaxy-central/
 
 # Mark folders as imported from the host.
 VOLUME ["/export/", "/data/", "/var/lib/docker"]
