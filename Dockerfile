@@ -33,16 +33,14 @@ COPY ./dependency_resolvers_conf.xml /galaxy-central/config/dependency_resolvers
 
 RUN R CMD BATCH /galaxy-central/install.R
 
-RUN chown -v galaxy:galaxy /galaxy-central/config/dependency_resolvers_conf.xml && \
-    chmod +x /usr/bin/startup && \
+RUN chmod +x /usr/bin/startup && \
     chmod g-w /var/log
 
 RUN add-tool-shed --url 'http://testtoolshed.g2.bx.psu.edu/' --name 'Test Tool Shed'
 
 RUN install-tools /tmp/tools.yaml
 
-RUN chown -R galaxy:galaxy /export/galaxy-central/ && \
-    apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV GALAXY_CONFIG_INTEGRATED_TOOL_PANEL_CONFIG /export/galaxy-central/integrated_tool_panel.xml
 
