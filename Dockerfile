@@ -45,8 +45,7 @@ RUN apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/*
 ENV GALAXY_CONFIG_INTEGRATED_TOOL_PANEL_CONFIG /export/galaxy-central/integrated_tool_panel.xml
 
 COPY ./integrated_tool_panel.xml /export/galaxy-central/integrated_tool_panel.xml
-RUN mkdir -pv /export/galaxy-central/database/files && \
-    chown -vr galaxy:galaxy /export/galaxy-central/
+RUN mkdir -pv /export/galaxy-central/database/files
 
 # Mark folders as imported from the host.
 VOLUME ["/export/", "/data/", "/var/lib/docker"]
