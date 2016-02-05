@@ -36,15 +36,13 @@ RUN R CMD BATCH /galaxy-central/install.R
 RUN chmod +x /usr/bin/startup && \
     chmod g-w /var/log
 
-RUN add-tool-shed --url 'http://testtoolshed.g2.bx.psu.edu/' --name 'Test Tool Shed'
-
 RUN install-tools /tmp/tools.yaml
 
 RUN apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV GALAXY_CONFIG_INTEGRATED_TOOL_PANEL_CONFIG /export/galaxy-central/integrated_tool_panel.xml
 
-COPY ./integrated_tool_panel.xml /export/galaxy-central/integrated_tool_panel.xml
+COPY ./integrated_tool_panel.xml.lefse_fixed_order /export/galaxy-central/integrated_tool_panel.xml.lefse_fixed_order
 RUN mkdir -pv /export/galaxy-central/database/files
 
 # Mark folders as imported from the host.
