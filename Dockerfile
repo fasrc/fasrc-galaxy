@@ -14,7 +14,7 @@ ENV GALAXY_DB_HOST=localhost \
     GALAXY_DATABASE_CONNECTION=postgresql://$GALAXY_DB_USER:"$GALAXY_DB_PASSWORD"@$GALAXY_DB_HOST:$GALAXY_DB_PORT/$GALAXY_DB_NAME
 
 COPY ./startup.sh /usr/bin/startup
-COPY ./tools.yaml /tmp/tools.yaml
+COPY ./tools.yaml /galaxy-central/tools.yaml
 COPY ./install.R /galaxy-central/install.R
 COPY ./job_conf.xml /galaxy-central/config/job_conf.xml
 COPY ./dependency_resolvers_conf.xml /galaxy-central/config/dependency_resolvers_conf.xml
@@ -34,7 +34,7 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 && \
     R CMD BATCH /galaxy-central/install.R && \
     chmod +x /usr/bin/startup && \
     chmod g-w /var/log && \
-    install-tools /tmp/tools.yaml
+    install-tools /galaxy-central/tools.yaml
     #mkdir -pv /export/galaxy-central/database/files
 
 ENV GALAXY_CONFIG_INTEGRATED_TOOL_PANEL_CONFIG /export/galaxy-central/integrated_tool_panel.xml
