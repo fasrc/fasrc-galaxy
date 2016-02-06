@@ -12,7 +12,7 @@ ENV GALAXY_DB_HOST=localhost \
     GALAXY_DB_NAME=galaxy \
     GALAXY_DB_PORT=5432 \
     GALAXY_DATABASE_CONNECTION=postgresql://$GALAXY_DB_USER:"$GALAXY_DB_PASSWORD"@$GALAXY_DB_HOST:$GALAXY_DB_PORT/$GALAXY_DB_NAME \
-    GALAXY_CONFIG_INTEGRATED_TOOL_PANEL_CONFIG /export/galaxy-central/integrated_tool_panel.xml \
+    GALAXY_CONFIG_INTEGRATED_TOOL_PANEL_CONFIG=/export/galaxy-central/integrated_tool_panel.xml \
     ENABLE_TTS_INSTALL=True
 
 COPY ./startup.sh /usr/bin/startup
@@ -36,6 +36,7 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 && \
     R CMD BATCH /galaxy-central/install.R && \
     chmod +x /usr/bin/startup && \
     chmod g-w /var/log && \
+    add-tool-shed --url 'http://testtoolshed.g2.bx.psu.edu/' --name 'Test Tool Shed' && \
     install-tools /galaxy-central/tools.yaml
     #mkdir -pv /export/galaxy-central/database/files
 
