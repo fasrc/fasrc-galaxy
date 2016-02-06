@@ -11,7 +11,9 @@ ENV GALAXY_DB_HOST=localhost \
     GALAXY_DB_PASSWORD=galaxy \
     GALAXY_DB_NAME=galaxy \
     GALAXY_DB_PORT=5432 \
-    GALAXY_DATABASE_CONNECTION=postgresql://$GALAXY_DB_USER:"$GALAXY_DB_PASSWORD"@$GALAXY_DB_HOST:$GALAXY_DB_PORT/$GALAXY_DB_NAME
+    GALAXY_DATABASE_CONNECTION=postgresql://$GALAXY_DB_USER:"$GALAXY_DB_PASSWORD"@$GALAXY_DB_HOST:$GALAXY_DB_PORT/$GALAXY_DB_NAME \
+    GALAXY_CONFIG_INTEGRATED_TOOL_PANEL_CONFIG /export/galaxy-central/integrated_tool_panel.xml \
+    ENABLE_TTS_INSTALL=True
 
 COPY ./startup.sh /usr/bin/startup
 COPY ./tools.yaml /galaxy-central/tools.yaml
@@ -37,7 +39,6 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 && \
     install-tools /galaxy-central/tools.yaml
     #mkdir -pv /export/galaxy-central/database/files
 
-ENV GALAXY_CONFIG_INTEGRATED_TOOL_PANEL_CONFIG /export/galaxy-central/integrated_tool_panel.xml
 
 
 # Mark folders as imported from the host.
