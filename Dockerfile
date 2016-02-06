@@ -18,7 +18,7 @@ COPY ./tools.yaml /tmp/tools.yaml
 COPY ./install.R /galaxy-central/install.R
 COPY ./job_conf.xml /galaxy-central/config/job_conf.xml
 COPY ./dependency_resolvers_conf.xml /galaxy-central/config/dependency_resolvers_conf.xml
-COPY ./integrated_tool_panel.xml.lefse_fixed_order /export/galaxy-central/integrated_tool_panel.xml.lefse_fixed_order
+COPY ./integrated_tool_panel.xml.lefse_fixed_order /galaxy-central/integrated_tool_panel.xml.lefse_fixed_order
 
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 && \
     sh -c "echo deb http://archive.linux.duke.edu/cran/bin/linux/ubuntu trusty/ > /etc/apt/sources.list.d/r_cran.list" && \
