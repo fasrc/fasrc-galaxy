@@ -33,7 +33,7 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 && \
     . $GALAXY_ROOT/.venv/bin/activate && \
     pip install setuptools --upgrade && \
     pip install psutil numpy rpy2 matplotlib blist biom-format h5py cogent mlpy &&\
-    R CMD BATCH /galaxy-central/install.R && \
+    R CMD BATCH -q /galaxy-central/install.R /galaxy-central/r_deps_installed.log && \
     chmod +x /usr/bin/startup && \
     chmod g-w /var/log && \
     add-tool-shed --url 'http://testtoolshed.g2.bx.psu.edu/' --name 'Test Tool Shed' && \
