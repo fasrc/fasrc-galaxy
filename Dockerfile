@@ -34,8 +34,8 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 && \
     R CMD BATCH /galaxy-central/install.R && \
     chmod +x /usr/bin/startup && \
     chmod g-w /var/log && \
-    install-tools /tmp/tools.yaml && \
-    mkdir -pv /export/galaxy-central/database/files
+    install-tools /tmp/tools.yaml
+    #mkdir -pv /export/galaxy-central/database/files
 
 ENV GALAXY_CONFIG_INTEGRATED_TOOL_PANEL_CONFIG /export/galaxy-central/integrated_tool_panel.xml
 
