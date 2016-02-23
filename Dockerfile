@@ -1,6 +1,6 @@
 # galaxy for hutlab
 
-FROM bgruening/galaxy-stable:latest
+FROM bgruening/galaxy-stable:dev
 
 MAINTAINER FASRC, rchelp@rc.fas.harvard.edu
 
