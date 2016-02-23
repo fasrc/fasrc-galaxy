@@ -1,6 +1,6 @@
 # galaxy for hutlab
 
-FROM bgruening/galaxy-stable:dev
+FROM bgruening/galaxy-stable:latest
 
 MAINTAINER FASRC, rchelp@rc.fas.harvard.edu
 
@@ -32,7 +32,7 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 && \
     r-cran-vegan r-cran-gam r-cran-gbm r-cran-pscl r-cran-robustbase \
     ssh libopenmpi-dev openmpi-bin && \
     add-apt-repository -y ppa:nginx/stable && \
-    apt-get update -qq && apt-get install -o Dpkg::Options::="--force-confold" --no-install-recommends -y nginx && \
+    #apt-get update -qq && apt-get install -o Dpkg::Options::="--force-confold" --no-install-recommends -y nginx && \
     apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     . $GALAXY_ROOT/.venv/bin/activate && \
     pip install setuptools --upgrade && \
