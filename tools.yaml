@@ -15,7 +15,7 @@ tools:
   owner: devteam
   tool_shed_url: https://toolshed.g2.bx.psu.edu
 - name: graphlan
-  owner: george-weingart
+  owner: bebatut
   tool_panel_section_id: GraPhlAn
   tool_shed_url: https://testtoolshed.g2.bx.psu.edu
 - name: micropita
