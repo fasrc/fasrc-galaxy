@@ -26,10 +26,13 @@ COPY ./welcome.html $GALAXY_CONFIG_DIR/web/welcome.html
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 && \
     sh -c "echo deb http://archive.linux.duke.edu/cran/bin/linux/ubuntu trusty/ > /etc/apt/sources.list.d/r_cran.list" && \
     apt-get update -qq && apt-get upgrade -y && \
-    apt-get install --no-install-recommends -y texlive-binaries libfreetype6-dev bowtie bowtie2 libhdf5-dev \
+    apt-get install --no-install-recommends -y python-software-properties software-properties-common \
+    texlive-binaries libfreetype6-dev bowtie bowtie2 libhdf5-dev \
     r-base-core r-base-dev r-cran-mvtnorm r-cran-multcomp r-cran-sandwich r-cran-th.data r-cran-zoo r-cran-testthat \
     r-cran-vegan r-cran-gam r-cran-gbm r-cran-pscl r-cran-robustbase \
     ssh libopenmpi-dev openmpi-bin && \
+    add-apt-repository -y ppa:nginx/stable && \
+    apt-get update -qq && apt-get install -o Dpkg::Options::="--force-confold" --no-install-recommends -y nginx && \
     apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     . $GALAXY_ROOT/.venv/bin/activate && \
     pip install setuptools --upgrade && \
