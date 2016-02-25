@@ -31,7 +31,7 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 && \
     texlive-binaries libfreetype6-dev bowtie bowtie2 libhdf5-dev \
     r-base-core r-base-dev r-cran-mvtnorm r-cran-multcomp r-cran-sandwich r-cran-th.data r-cran-zoo r-cran-testthat \
     r-cran-vegan r-cran-gam r-cran-gbm r-cran-pscl r-cran-robustbase \
-    ssh libopenmpi-dev openmpi-bin && \
+    ssh libopenmpi-dev openmpi-bin \
     nginx-common=1.4.6-1ubuntu3.3ppa1 nginx-extras=1.4.6-1ubuntu3.3ppa1 && \
     apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     . $GALAXY_ROOT/.venv/bin/activate && \
