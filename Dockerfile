@@ -7,25 +7,15 @@ MAINTAINER FASRC, rchelp@rc.fas.harvard.edu
 WORKDIR /galaxy-central
 
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 && \
-    sh -c "echo deb http://archive.linux.duke.edu/cran/bin/linux/ubuntu trusty/ > /etc/apt/sources.list.d/r_cran.list"
-
-RUN apt-get update -qq && apt-get upgrade -y && \
+    sh -c "echo deb http://archive.linux.duke.edu/cran/bin/linux/ubuntu trusty/ > /etc/apt/sources.list.d/r_cran.list" && \
+    apt-get update -qq && apt-get upgrade -y && \
     apt-get install --no-install-recommends -y texlive-binaries libfreetype6-dev \
-    r-base-core r-base-dev r-cran-mvtnorm r-cran-multcomp r-cran-sandwich r-cran-th.data r-cran-zoo
-
-RUN . $GALAXY_ROOT/.venv/bin/activate && \
+    r-base-core r-base-dev r-cran-mvtnorm r-cran-multcomp r-cran-sandwich r-cran-th.data r-cran-zoo && \
+    . $GALAXY_ROOT/.venv/bin/activate && \
     pip install setuptools --upgrade && \
-    pip install psutil numpy rpy2 matplotlib
-
-ADD ./tools.yaml /tmp/tools.yaml
-
-#RUN install-tools /tmp/tools.yaml
-
-RUN chmod g-w /var/log
-
-#ADD ./integrated_tool_panel.xml /galaxy-central/integrated_tool_panel.xml
-
-RUN add-tool-shed --u 'http://testtoolshed.g2.bx.psu.edu/' --name 'Test Tool Shed' ; sleep 5 && \
+    pip install psutil numpy rpy2 matplotlib && \
+    chmod g-w /var/log && \
+    add-tool-shed --u 'http://testtoolshed.g2.bx.psu.edu/' --name 'Test Tool Shed' ; sleep 5 && \
     install-repository "-u https://toolshed.g2.bx.psu.edu/ -o george-weingart -n lefse --panel-section-name LEfSe -r a31c10fe09c8" ; sleep 5 && \
     install-repository "-u https://testtoolshed.g2.bx.psu.edu/ -o george-weingart --name metaphlan --panel-section-name MetaPhlAn -r d31b701b44ee" ; sleep 5 && \
     install-repository "-u https://testtoolshed.g2.bx.psu.edu/ -o george-weingart --name micropita --panel-section-name microPITA -r 61e311c4d2d0" ; sleep 5 && \
