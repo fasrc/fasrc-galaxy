@@ -13,7 +13,7 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 && \
     r-base-core r-base-dev r-cran-mvtnorm r-cran-multcomp r-cran-sandwich r-cran-th.data r-cran-zoo && \
     . $GALAXY_ROOT/.venv/bin/activate && \
     pip install setuptools --upgrade && \
-    pip install psutil numpy rpy2 matplotlib && \
+    pip install psutil numpy rpy2 matplotlib blist && \
     chmod g-w /var/log && \
     add-tool-shed --u 'http://testtoolshed.g2.bx.psu.edu/' --name 'Test Tool Shed' ; sleep 5 && \
     install-repository "-u https://testtoolshed.g2.bx.psu.edu/ -o george-weingart -n lefse --panel-section-name LEfSe -r a31c10fe09c8" ; sleep 5 && \
