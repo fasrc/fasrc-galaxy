@@ -57,6 +57,18 @@ The easiest way to restart one of the core galaxy services is to use the supervi
 
 Aside from that, you can stop/start/restart services via `supervisorctl` from within a shell session in the container.
 
+Do that in the container like so:
+
+`supervisorctl restart galaxy:galaxy_web`
+`supervisorctl restart galaxy:handler0`
+`supervisorctl restart galaxy:handler1`
+
+And from outside the container (the docker host):
+
+`docker exec galaxy supervisorctl restart galaxy:galaxy_web`
+`docker exec galaxy supervisorctl restart galaxy:handler0`
+`docker exec galaxy supervisorctl restart galaxy:handler1`
+
 
 How does one upgrade the db schema after a galaxy upgrade?
 ----------------------------------------------------------
