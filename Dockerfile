@@ -11,7 +11,7 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 && \
     apt-get update -qq && apt-get upgrade -y && \
     apt-get install --no-install-recommends -y texlive-binaries libfreetype6-dev \
     r-base-core r-base-dev r-cran-mvtnorm r-cran-multcomp r-cran-sandwich r-cran-th.data r-cran-zoo && \
-    . $GALAXY_ROOT/.venv/bin/activate && \
+    . $GALAXY_VIRTUAL_ENV/.venv/bin/activate && \
     pip install setuptools --upgrade && \
     pip install psutil numpy rpy2 matplotlib blist && \
     chmod g-w /var/log && \
