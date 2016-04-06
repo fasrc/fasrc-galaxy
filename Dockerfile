@@ -6,12 +6,14 @@ MAINTAINER FASRC, rchelp@rc.fas.harvard.edu
 
 WORKDIR /galaxy-central
 
+ENV GALAXY_VIRTUAL_ENV /galaxy_venv
+
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 && \
     sh -c "echo deb http://archive.linux.duke.edu/cran/bin/linux/ubuntu trusty/ > /etc/apt/sources.list.d/r_cran.list" && \
     apt-get update -qq && apt-get upgrade -y && \
     apt-get install --no-install-recommends -y texlive-binaries libfreetype6-dev \
     r-base-core r-base-dev r-cran-mvtnorm r-cran-multcomp r-cran-sandwich r-cran-th.data r-cran-zoo && \
-    . $GALAXY_VIRTUAL_ENV/.venv/bin/activate && \
+    . $GALAXY_VIRTUAL_ENV/bin/activate && \
     pip install setuptools --upgrade && \
     pip install psutil numpy rpy2 matplotlib blist && \
     chmod g-w /var/log && \
