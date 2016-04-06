@@ -60,14 +60,24 @@ Aside from that, you can stop/start/restart services via `supervisorctl` from wi
 Do that in the container like so:
 
 `supervisorctl restart galaxy:galaxy_web`
+
 `supervisorctl restart galaxy:handler0`
+
 `supervisorctl restart galaxy:handler1`
 
 And from outside the container (the docker host):
 
 `docker exec galaxy supervisorctl restart galaxy:galaxy_web`
+
 `docker exec galaxy supervisorctl restart galaxy:handler0`
+
 `docker exec galaxy supervisorctl restart galaxy:handler1`
+
+If you like, you can restart them all in a one-liner:
+
+`supervisorctl restart galaxy:galaxy_web galaxy:handler0 galaxy:handler1`
+
+Basically, as long as you restart those three galaxy services somehow, you should be in good shape.
 
 
 How does one upgrade the db schema after a galaxy upgrade?
