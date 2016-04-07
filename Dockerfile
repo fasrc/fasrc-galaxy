@@ -34,18 +34,21 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 && \
     texlive-binaries libfreetype6-dev bowtie bowtie2 libhdf5-dev \
     r-base-core r-base-dev r-cran-mvtnorm r-cran-multcomp r-cran-sandwich r-cran-th.data r-cran-zoo r-cran-testthat \
     r-cran-vegan r-cran-gam r-cran-gbm r-cran-pscl r-cran-robustbase \
-    ssh libopenmpi-dev openmpi-bin && \
-    apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-    /galaxy-central/install_galaxy_python_deps.sh && \
+    ssh libopenmpi-dev openmpi-bin
+
+RUN sudo -H -u galaxy /galaxy-central/install_galaxy_python_deps.sh && \
     R CMD BATCH -q /galaxy-central/install.R /galaxy-central/r_deps_installed.log && \
     chmod +x /usr/bin/startup && \
-    chmod g-w /var/log && \
-    touch galaxy_install.log && chown galaxy:galaxy galaxy_install.log && \
+    chmod g-w /var/log
+
+RUN touch galaxy_install.log && chown galaxy:galaxy galaxy_install.log && \
     add-tool-shed --u 'http://testtoolshed.g2.bx.psu.edu/' --name 'Test Tool Shed' && sleep 5 && \
     install-repository "-u https://testtoolshed.g2.bx.psu.edu/ -o george-weingart -n lefse --panel-section-name LEfSe -r a6284ef17bf3" && sleep 5 && \
     install-repository "-u https://testtoolshed.g2.bx.psu.edu/ -o george-weingart --name metaphlan --panel-section-name MetaPhlAn -r d31b701b44ee" && sleep 5 && \
     install-repository "-u https://testtoolshed.g2.bx.psu.edu/ -o george-weingart --name micropita --panel-section-name microPITA -r 61e311c4d2d0" && sleep 5 && \
     install-repository "-u https://testtoolshed.g2.bx.psu.edu/ -o george-weingart --name maaslin --panel-section-name MaAsLin -r 4450aa4ecc84"
+
+RUN apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Mark folders as imported from the host.
 VOLUME ["/export/", "/data/", "/var/lib/docker"]
