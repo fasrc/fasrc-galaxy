@@ -37,7 +37,8 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 && \
     apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     . $GALAXY_VIRTUAL_ENV/bin/activate && \
     pip install setuptools --upgrade && \
-    pip install psutil numpy scipy numpy rpy2 matplotlib blist biom-format h5py cogent mlpy &&\
+    pip install --upgrade pip && \
+    pip install psutil numpy scipy numpy rpy2 matplotlib blist biom-format h5py cogent mlpy && \
     R CMD BATCH -q /galaxy-central/install.R /galaxy-central/r_deps_installed.log && \
     chmod +x /usr/bin/startup && \
     chmod g-w /var/log && \
