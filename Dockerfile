@@ -24,6 +24,7 @@ COPY ./job_conf.xml /galaxy-central/config/job_conf.xml
 COPY ./dependency_resolvers_conf.xml /galaxy-central/config/dependency_resolvers_conf.xml
 COPY ./integrated_tool_panel.xml.lefse_fixed_order /galaxy-central/integrated_tool_panel.xml.lefse_fixed_order
 COPY ./welcome.html $GALAXY_CONFIG_DIR/web/welcome.html
+COPY ./install_galaxy_python_deps.sh /galaxy-central/install_galaxy_python_deps.sh
 
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 && \
     sh -c "echo deb http://archive.linux.duke.edu/cran/bin/linux/ubuntu trusty/ > /etc/apt/sources.list.d/r_cran.list" && \
@@ -35,9 +36,8 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 && \
     r-cran-vegan r-cran-gam r-cran-gbm r-cran-pscl r-cran-robustbase \
     ssh libopenmpi-dev openmpi-bin && \
     apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-    . $GALAXY_VIRTUAL_ENV/bin/activate && \
-    sudo -H -u galaxy pip install setuptools --upgrade && \
-    sudo -H -u galaxy pip install psutil numpy scipy numpy rpy2 matplotlib blist biom-format h5py cogent mlpy && \
+    chmod +x /galaxy-central/install_galaxy_python_deps.sh && \
+    /galaxy-central/install_galaxy_python_deps.sh && \
     R CMD BATCH -q /galaxy-central/install.R /galaxy-central/r_deps_installed.log && \
     chmod +x /usr/bin/startup && \
     chmod g-w /var/log && \
