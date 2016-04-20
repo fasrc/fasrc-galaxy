@@ -103,7 +103,7 @@ fi
 # Enable verbose output
 if [ `echo ${GALAXY_LOGGING:-'no'} | tr [:upper:] [:lower:]` = "full" ]
     then
-        tail -f /var/log/supervisor/* /var/log/nginx/* /home/galaxy/*.log
+        tail -f /var/log/supervisor/* /var/log/nginx/* /home/galaxy/logs/*.log
     else
         tail -f /home/galaxy/*.log
 fi
