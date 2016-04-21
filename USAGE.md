@@ -92,3 +92,13 @@ How does one point the container to an external db host?
 --------------------------------------------------------
 
 You can do this by setting the `GALAXY_CONFIG_DATABASE_CONNECTION` environment variable when running the container. This corresponds to the `database_connection` configuration line in the galaxy.ini file. By default, the container assumes it will use the local postgresql service inside the container.
+
+
+How does one add galaxy tools?
+------------------------------
+
+If you need to add tools from either the toolshed or test toolshed, do that via the admin gui in the Galaxy web app.
+
+For locally installed tools, follow whatever directions are included with the tools.
+
+The `tools` directory is `/galaxy-central/tools`, and the `lib` directory, if needed, is `/galaxy-central/lib`. Items located in anything under `/galaxy-central` or `/export/galaxy-central` should probably be owned by the local galaxy user in the container.
