@@ -43,7 +43,7 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 && \
 
 RUN sudo -H -u galaxy /galaxy-central/install_galaxy_python_deps.sh && \
     R CMD BATCH -q /galaxy-central/install.R /galaxy-central/r_deps_installed.log && \
-    chmod +x /usr/bin/startup && \
+    chmod +x /usr/bin/startup /usr/local/bin/install_* && \
     chmod g-w /var/log && \
     ln -s /galaxy-central /usr/local/galaxy-dist
 
