@@ -28,6 +28,8 @@ COPY ./install_galaxy_python_deps.sh /galaxy-central/install_galaxy_python_deps.
 COPY ./datatypes_conf.xml /galaxy-central/config/datatypes_conf.xml
 COPY ./tool_conf.xml /galaxy-central/config/tool_conf.xml
 COPY ./install_graphlan.sh /usr/local/bin/install_graphlan.sh
+COPY ./install_metaphlan2.sh /usr/local/bin/install_metaphlan2.sh
+COPY ./install_picrust.sh /usr/local/bin/install_picrust.sh
 
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 && \
     sh -c "echo deb http://archive.linux.duke.edu/cran/bin/linux/ubuntu trusty/ > /etc/apt/sources.list.d/r_cran.list" && \
@@ -51,7 +53,9 @@ RUN touch galaxy_install.log && chown galaxy:galaxy galaxy_install.log && \
     install-repository "-u https://testtoolshed.g2.bx.psu.edu/ -o george-weingart --name metaphlan --panel-section-name MetaPhlAn -r d31b701b44ee" && sleep 5 && \
     install-repository "-u https://testtoolshed.g2.bx.psu.edu/ -o george-weingart --name micropita --panel-section-name microPITA -r 61e311c4d2d0" && sleep 5 && \
     install-repository "-u https://testtoolshed.g2.bx.psu.edu/ -o george-weingart --name maaslin --panel-section-name MaAsLin -r 4450aa4ecc84" && \
-    /usr/local/bin/install_graphlan.sh
+    /usr/local/bin/install_graphlan.sh && \
+    /usr/local/bin/install_metaphlan2.sh && \
+    /usr/local/bin/install_picrust
 
 RUN apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
