@@ -1,6 +1,6 @@
 # galaxy for hutlab
 
-FROM fasrsrc/fasrc-galaxy:latest
+FROM fasrc/fasrc-galaxy:latest
 
 MAINTAINER FASRC, rchelp@rc.fas.harvard.edu
 
