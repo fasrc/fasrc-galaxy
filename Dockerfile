@@ -55,7 +55,7 @@ RUN touch galaxy_install.log && chown galaxy:galaxy galaxy_install.log && \
     install-repository "-u https://testtoolshed.g2.bx.psu.edu/ -o george-weingart --name maaslin --panel-section-name MaAsLin -r 4450aa4ecc84" && \
     /usr/local/bin/install_graphlan.sh && \
     /usr/local/bin/install_metaphlan2.sh && \
-    /usr/local/bin/install_picrusti.sh
+    /usr/local/bin/install_picrust.sh
 
 RUN apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
