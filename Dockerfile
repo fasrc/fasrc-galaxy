@@ -19,6 +19,7 @@ ENV GALAXY_DB_HOST=localhost \
 
 COPY ./startup.sh /usr/bin/startup
 COPY ./job_conf.xml /galaxy-central/config/job_conf.xml
+COPY ./install_galaxy_python_deps.sh /galaxy-central/install_galaxy_python_deps.sh
 
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 && \
     sh -c "echo deb http://archive.linux.duke.edu/cran/bin/linux/ubuntu trusty/ > /etc/apt/sources.list.d/r_cran.list" && \
