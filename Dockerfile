@@ -1,6 +1,6 @@
 # galaxy for hutlab
 
-FROM bgruening/galaxy-stable:dev
+FROM fasrsrc/fasrc-galaxy:latest
 
 MAINTAINER FASRC, rchelp@rc.fas.harvard.edu
 
@@ -17,32 +17,15 @@ ENV GALAXY_DB_HOST=localhost \
     GALAXY_CONFIG_INTEGRATED_TOOL_PANEL_CONFIG=/export/galaxy-central/integrated_tool_panel.xml \
     ENABLE_TTS_INSTALL=True
 
-COPY ./startup.sh /usr/bin/startup
-COPY ./tools.yaml /galaxy-central/tools.yaml
 COPY ./install.R /galaxy-central/install.R
-COPY ./job_conf.xml /galaxy-central/config/job_conf.xml
 COPY ./dependency_resolvers_conf.xml /galaxy-central/config/dependency_resolvers_conf.xml
 COPY ./integrated_tool_panel.xml.lefse_fixed_order /galaxy-central/integrated_tool_panel.xml.lefse_fixed_order
 COPY ./welcome.html $GALAXY_CONFIG_DIR/web/welcome.html
-COPY ./install_galaxy_python_deps.sh /galaxy-central/install_galaxy_python_deps.sh
 COPY ./datatypes_conf.xml /galaxy-central/config/datatypes_conf.xml
 COPY ./tool_conf.xml /galaxy-central/config/tool_conf.xml
-COPY ./install_graphlan.sh /usr/local/bin/install_graphlan.sh
-COPY ./install_metaphlan2.sh /usr/local/bin/install_metaphlan2.sh
-COPY ./install_picrust.sh /usr/local/bin/install_picrust.sh
+COPY ./install_tools.sh /usr/local/bin/install_tools.sh
 
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 && \
-    sh -c "echo deb http://archive.linux.duke.edu/cran/bin/linux/ubuntu trusty/ > /etc/apt/sources.list.d/r_cran.list" && \
-    apt-get update -qq && \
-    apt-get upgrade -y && \
-    apt-get install --no-install-recommends -y python-software-properties software-properties-common \
-    texlive-binaries libfreetype6-dev bowtie bowtie2 libhdf5-dev \
-    r-base-core r-base-dev r-cran-mvtnorm r-cran-multcomp r-cran-sandwich r-cran-th.data r-cran-zoo r-cran-testthat \
-    r-cran-vegan r-cran-gam r-cran-gbm r-cran-pscl r-cran-robustbase \
-    ssh libopenmpi-dev openmpi-bin
-
-RUN sudo -H -u galaxy /galaxy-central/install_galaxy_python_deps.sh && \
-    R CMD BATCH -q /galaxy-central/install.R /galaxy-central/r_deps_installed.log && \
+RUN R CMD BATCH -q /galaxy-central/install.R /galaxy-central/r_deps_installed.log && \
     chmod +x /usr/bin/startup /usr/local/bin/install_* && \
     chmod g-w /var/log && \
     ln -s /galaxy-central /usr/local/galaxy-dist
@@ -50,12 +33,9 @@ RUN sudo -H -u galaxy /galaxy-central/install_galaxy_python_deps.sh && \
 RUN touch galaxy_install.log && chown galaxy:galaxy galaxy_install.log && \
     add-tool-shed --u 'http://testtoolshed.g2.bx.psu.edu/' --name 'Test Tool Shed' && sleep 5 && \
     install-repository "-u https://testtoolshed.g2.bx.psu.edu/ -o george-weingart -n lefse --panel-section-name LEfSe -r a6284ef17bf3" && sleep 5 && \
-    install-repository "-u https://testtoolshed.g2.bx.psu.edu/ -o george-weingart --name metaphlan --panel-section-name MetaPhlAn -r d31b701b44ee" && sleep 5 && \
     install-repository "-u https://testtoolshed.g2.bx.psu.edu/ -o george-weingart --name micropita --panel-section-name microPITA -r 61e311c4d2d0" && sleep 5 && \
     install-repository "-u https://testtoolshed.g2.bx.psu.edu/ -o george-weingart --name maaslin --panel-section-name MaAsLin -r 4450aa4ecc84" && \
-    /usr/local/bin/install_graphlan.sh && \
-    /usr/local/bin/install_metaphlan2.sh && \
-    /usr/local/bin/install_picrust.sh
+    /usr/local/bin/install_tools.sh
 
 RUN apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
