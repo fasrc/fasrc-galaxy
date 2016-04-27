@@ -33,9 +33,11 @@ RUN R CMD BATCH -q /galaxy-central/install.R /galaxy-central/r_deps_installed.lo
 RUN touch galaxy_install.log && chown galaxy:galaxy galaxy_install.log && \
     add-tool-shed --u 'http://testtoolshed.g2.bx.psu.edu/' --name 'Test Tool Shed' && sleep 5 && \
     install-repository "-u https://testtoolshed.g2.bx.psu.edu/ -o george-weingart -n lefse --panel-section-name LEfSe -r a6284ef17bf3" && sleep 5 && \
+    install-repository "-u https://testtoolshed.g2.bx.psu.edu/ -o george-weingart --name metaphlan --panel-section-name MetaPhlAn -r d31b701b44ee" && sleep 5 && \
     install-repository "-u https://testtoolshed.g2.bx.psu.edu/ -o george-weingart --name micropita --panel-section-name microPITA -r 61e311c4d2d0" && sleep 5 && \
     install-repository "-u https://testtoolshed.g2.bx.psu.edu/ -o george-weingart --name maaslin --panel-section-name MaAsLin -r 4450aa4ecc84" && \
-    /usr/local/bin/install_tools.sh
+    /usr/local/bin/install_tools.sh && \
+    chown -Rfv galaxy:galaxy /galaxy-central/
 
 RUN apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
