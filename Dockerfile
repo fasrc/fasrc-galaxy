@@ -37,7 +37,7 @@ RUN touch galaxy_install.log && chown galaxy:galaxy galaxy_install.log && \
     install-repository "-u https://testtoolshed.g2.bx.psu.edu/ -o george-weingart --name micropita --panel-section-name microPITA -r 61e311c4d2d0" && sleep 5 && \
     install-repository "-u https://testtoolshed.g2.bx.psu.edu/ -o george-weingart --name maaslin --panel-section-name MaAsLin -r 4450aa4ecc84" && \
     /usr/local/bin/install_tools.sh && \
-    chown -Rfv galaxy:galaxy /galaxy-central/
+    chown -Rf galaxy:galaxy /galaxy-central/
 
 RUN apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 

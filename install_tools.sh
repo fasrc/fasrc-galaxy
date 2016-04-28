@@ -16,8 +16,8 @@ git clone git://github.com/picrust/picrust.git picrust
 hg clone https://bitbucket.org/biobakery/galaxy_picrust
 cp /galaxy-central/tools/galaxy_picrust/*.xml /galaxy-central/tools/picrust
 cd /galaxy-central/tools/picrust/data
-wget ftp://ftp.microbio.me/pub/picrust-references/picrust-1.0.0/16S_13_5_precalculated.tab.gz
-wget ftp://ftp.microbio.me/pub/picrust-references/picrust-1.0.0/ko_13_5_precalculated.tab.gz
+wget -q ftp://ftp.microbio.me/pub/picrust-references/picrust-1.0.0/16S_13_5_precalculated.tab.gz
+wget -q ftp://ftp.microbio.me/pub/picrust-references/picrust-1.0.0/ko_13_5_precalculated.tab.gz
 cd /galaxy-central/tools/picrust
 python setup.py install
 
