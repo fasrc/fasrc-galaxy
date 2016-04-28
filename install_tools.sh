@@ -1,4 +1,7 @@
 #!/bin/bash
+export GALAXY_VIRTUAL_ENV=/galaxy_venv
+source $GALAXY_VIRTUAL_ENV/bin/activate
+
 cd /galaxy-central/tools
 hg clone https://bitbucket.org/biobakery/metaphlan2
 hg clone https://bitbucket.org/biobakery/galaxy_metaphlan2
