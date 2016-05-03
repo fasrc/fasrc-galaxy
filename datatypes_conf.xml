@@ -496,6 +496,7 @@
     <datatype extension="picrustn" type="galaxy.datatypes.data:Text" subclass="true" display_in_upload="false"/>
     <datatype extension="picrustp" type="galaxy.datatypes.data:Text" subclass="true" display_in_upload="false"/>
     <datatype extension="picrustc" type="galaxy.datatypes.data:Text" subclass="true" display_in_upload="false"/>
+    <datatype extension="micropita" type="galaxy.datatypes.data:Text" subclass="true" display_in_upload="true"/>
   </registration>
   <sniffers>
     <!--
