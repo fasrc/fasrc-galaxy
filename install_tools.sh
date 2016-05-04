@@ -13,14 +13,16 @@ cp -r graphlan/pyphlan /galaxy-central/lib/
 cp -r galaxy_graphlan/* graphlan/
 
 git clone git://github.com/picrust/picrust.git picrust
+cd picrust && git checkout tags/1.0.0 -b 1.0.0 && cd ..
 hg clone https://bitbucket.org/biobakery/galaxy_picrust
 cp /galaxy-central/tools/galaxy_picrust/*.xml /galaxy-central/tools/picrust
+mkdir -p /galaxy-central/tools/picrust/data
 cd /galaxy-central/tools/picrust/data
-wget -q ftp://ftp.microbio.me/pub/picrust-references/picrust-1.0.0/16S_13_5_precalculated.tab.gz
-wget -q ftp://ftp.microbio.me/pub/picrust-references/picrust-1.0.0/ko_13_5_precalculated.tab.gz
+wget ftp://ftp.microbio.me/pub/picrust-references/picrust-1.0.0/16S_13_5_precalculated.tab.gz
+wget ftp://ftp.microbio.me/pub/picrust-references/picrust-1.0.0/ko_13_5_precalculated.tab.gz
+wget https://github.com/picrust/picrust/releases/download/0.9.2/16S_18may2012_precalculated.tab.gz
 cd /galaxy-central/tools/picrust
 python setup.py install
-cd /galaxy_venv/local/lib/python2.7/site-packages/PICRUSt-1.0.0.dev0-py2.7.egg/picrust/data/
-wget https://github.com/picrust/picrust/releases/download/0.9.2/16S_18may2012_precalculated.tab.gz
+
 
 chown -Rf galaxy:galaxy /galaxy-central/tools /galaxy-central/lib
