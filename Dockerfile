@@ -24,6 +24,8 @@ COPY ./welcome.html $GALAXY_CONFIG_DIR/web/welcome.html
 COPY ./datatypes_conf.xml /galaxy-central/config/datatypes_conf.xml
 COPY ./tool_conf.xml /galaxy-central/config/tool_conf.xml
 COPY ./install_tools.sh /usr/local/bin/install_tools.sh
+COPY ./run_cron.sh /usr/local/bin/run_cron.sh
+COPY ./run_db_backups.sh /usr/local/bin/run_db_backups.sh
 
 RUN R CMD BATCH -q /galaxy-central/install.R /galaxy-central/r_deps_installed.log && \
     chmod +x /usr/bin/startup /usr/local/bin/install_* && \
