@@ -7,7 +7,7 @@ config="/etc/galaxy/galaxy.ini"
 logdir="/usr/local/galaxy-dist/logs"
 days=30
 
-if [[ ! -d $logdir]]; then
+if [[ ! -d $logdir ]]; then
     mkdir -p $logdir
 fi
 
