@@ -2,7 +2,7 @@
 <!-- A sample job config that explicitly configures job running the way it is configured by default (if there is no explicit config). -->
 <job_conf>
     <plugins>
-        <plugin id="local" type="runner" load="galaxy.jobs.runners.local:LocalJobRunner" workers="4"/>
+        <plugin id="local" type="runner" load="galaxy.jobs.runners.local:LocalJobRunner" workers="2"/>
     </plugins>
     <handlers>
         <handler id="main"/>
