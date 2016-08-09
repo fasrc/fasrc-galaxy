@@ -1,5 +1,6 @@
 #!/bin/bash
-docker run --net bridge -m 0b \
+
+sudo docker run --net bridge -m 0b \
        -e NONUSE=nodejs,proftp,reports,slurmd,slurmctld,docker \
        -e ENABLE_TTS_INSTALL=True \
        -e GALAXY_LOGGING=full \
@@ -19,5 +20,4 @@ docker run --net bridge -m 0b \
        --privileged=true \
        --cpu-shares 512 \
        --name galaxy \
-       fasrc/fasrc-galaxy:latest
-
+      fasrc/fasrc-galaxy:hutlab
