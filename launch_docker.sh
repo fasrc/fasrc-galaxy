@@ -12,6 +12,8 @@ sudo docker run --net bridge -m 0b \
        -e UWSGI_THREADS=4 \
        -e GALAXY_HANDLER_NUMPROCS=1 \
        -e GALAXY_VIRTUALENV=/export/galaxy-central/venv \
+       -e GALAXY_CONFIG_ENABLE_QUOTAS=True \
+       -e "GALAXY_CONFIG_ADMIN_USERS=admin@galaxy.org,chuttenh@hsph.harvard.edu,schwager@hsph.harvard.edu,george.weingart@gmail.com,simonychang.hutlab@gmail.com" \
        -p 80:80 \
        -p 9002:9002 \
        -v /usr/local/galaxy-dist/:/export/ \
@@ -20,4 +22,4 @@ sudo docker run --net bridge -m 0b \
        --privileged=true \
        --cpu-shares 512 \
        --name galaxy \
-      fasrc/fasrc-galaxy:hutlab
+       6d9628135d9b
